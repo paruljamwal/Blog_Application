@@ -1,18 +1,22 @@
 import { DeleteIcon } from '@chakra-ui/icons'
 import { Box,Text, Center,useColorModeValue,Image, Stack, Heading } from '@chakra-ui/react'
-import React from 'react'
+import React,{useEffect} from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { deleteBlogPost } from '../redux/Blogs/action'
 
 const BlogCard = ({blog}) => {
 
-    // const dispatch=useDispatch();
-    // console.log(blog,"blog");
+    const dispatch=useDispatch();
+    console.log(blog,"blog");
     // const removeArticle=(id)=>{
     //     // console.log(id);
     //     dispatch(deleteBlogPost(id))
     // }
+
+    useEffect(()=>{
+
+    },[blog])
 
   return (
     <Center my={6} >
