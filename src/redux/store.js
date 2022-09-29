@@ -19,3 +19,4 @@ export const store = legacy_createStore(
 
 
 //applymiddleware is one such enhancers
+// help to manipulate - thunk... 
