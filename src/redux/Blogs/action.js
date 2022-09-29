@@ -117,3 +117,41 @@ export const createBlogPost=(payload)=>(dispatch)=>{
     .catch((e)=>dispatch(createPostFailure(e.data)))
 }
 
+
+
+// POST UPDATION 
+
+
+const updateBlogPostRequest=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_REQUEST,
+        payload
+    }
+}
+
+
+const updateBlogPostSuccess=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_SUCCESS,
+        payload
+    }
+}
+
+
+
+const updatePostFailure=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_FAILURE,
+        payload
+    }
+}
+
+
+export const updateBlogPost=(payload)=>(dispatch)=>{
+    dispatch(updateBlogPostRequest());
+    axios.patch(`/blogs/${payload.id}`,payload)
+    .then((r)=>dispatch(updateBlogPostSuccess(r.data)))
+     .then(()=>fetchBlogPost())
+    .catch((e)=>dispatch(updatePostFailure(e.data)))
+}
+

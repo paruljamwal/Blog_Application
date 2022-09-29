@@ -3,9 +3,9 @@ import React, { useReducer } from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createBlogPost } from '../redux/Blogs/action';
+import { createBlogPost, updateBlogPost } from '../redux/Blogs/action';
 
-const ArticlesUpdator = ({currentBlog}) => {
+const ArticlesUpdator = ({singleBlog}) => {
     const dispatch=useDispatch();
     const navigate=useNavigate();
    
@@ -55,20 +55,38 @@ const ArticlesUpdator = ({currentBlog}) => {
 
 
   useEffect(()=>{
-   if(currentBlog && Object.keys(currentBlog).length){
+   if(singleBlog && Object.keys(singleBlog).length){
     setFormData({
-        title: currentBlog.tittle ,
-        sub_title: currentBlog.sub_title ,
-        thumbnail_pic: currentBlog.thumbnail ,
-        description:currentBlog.description ,
-        author_name: currentBlog.author.name ,
+  
+        title: singleBlog.tittle ,
+        sub_title: singleBlog.sub_title ,
+        thumbnail_pic: singleBlog.thumbnail ,
+        description:singleBlog.description ,
+        author_name: singleBlog.author.name ,
 
     })
    }
-  },[currentBlog]);
+  },[singleBlog]);
 
   const handelUpdateArticle=()=>{
+const updateArticle={
+    id:singleBlog.id,
+    tittle:formData.title,
+    sub_title:formData.sub_title,
+    thumbnail:formData.thumbnail_pic,
+    description:formData.description,
+     author:{
+     name:formData.author_name,
+     profile_pic:formData.author_profile_pic,
+     publish_date: new Date().toLocaleDateString()     
     
+    }
+}
+
+// dispatch updated article
+
+dispatch(updateBlogPost(updateArticle))
+
   }
       
   return (
@@ -138,7 +156,7 @@ const ArticlesUpdator = ({currentBlog}) => {
         />
       </FormControl>
     </Stack>
-    { currentBlog ? <Button colorScheme={'pink'} onClick={handelUpdateArticle}  >Update Article</Button>  : <Button onClick={createApplication} >Create Application</Button>}
+    { singleBlog ? <Button m={'20px'}  colorScheme={'pink'} onClick={handelUpdateArticle}  >Update Article</Button>  : <Button m={'20px'} colorScheme={'blue'}  onClick={createApplication} >Create Application</Button>}
   </Box>
    </Container>
  

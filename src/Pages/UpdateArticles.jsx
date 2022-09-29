@@ -7,13 +7,13 @@ const UpdateArticles = () => {
 
     const currentBlog=useSelector(store=>store.BlogReducer.singleBlog)
 
-
+//    console.log(currentBlog,"c")
   return (
     <Container maxW={'3xl'} pb={'4rem'} >
         <Box textAlign={'center'} >
           <Heading>Update Article</Heading>
         </Box>
-        <ArticlesUpdator singleBlog={singleBlog} />
+        <ArticlesUpdator singleBlog={currentBlog} />
     </Container>
   )
 }

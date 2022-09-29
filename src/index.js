@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
 
-axios.defaults.baseURL="http://localhost:8080";
+axios.defaults.baseURL="https://parularticleapp.herokuapp.com";
 axios.defaults.headers.post['Content-Type']="application/json";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
