@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import ColorModeSwitcher from "./ColorModeSwitcher";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -78,7 +78,13 @@ const Navbar = () => {
                 fontFamily={"heading"}
                 color={useColorModeValue("gray.800", "white")}
               >
+
                 <Heading size="md">BLOG APPLICATION</Heading>
+                <Link to={'/create'} >Create Article</Link> 👻
+                <Link to={'/'} > Articles</Link> 
+
+           
+                
               </Text>
               <Center>
                 <Flex display={{ base: "none", md: "flex" }} ml={10}>

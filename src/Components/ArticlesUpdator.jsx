@@ -86,7 +86,7 @@ const updateArticle={
 // dispatch updated article
 
 dispatch(updateBlogPost(updateArticle))
-
+navigate('/');
   }
       
   return (
