@@ -1,3 +1,4 @@
+import { EditIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -11,20 +12,22 @@ import {
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { fetchSingleBlogPost } from "../redux/Blogs/action";
 
 const Article = () => {
   const {id}=useParams();
-  const dispatch=useDispatch()
+  const dispatch=useDispatch();
+  const location=useLocation();
   const singleBlog=useSelector(store=>store.BlogReducer.singleBlog);
   
   useEffect(()=>{
     if(Object.keys(singleBlog).length===0 && id){
-      dispatch(fetchSingleBlogPost(Number(id)))
+      dispatch(fetchSingleBlogPost((id)))
     }
   },[id,singleBlog,dispatch])
 
+// console.log(singleBlog);
 
   return (
     <Container maxW={"3xl"} pb={"4rem"}>
@@ -34,40 +37,38 @@ const Article = () => {
           size="lg"
           src={`${singleBlog?.author?.profile_pic}`}
         />
+
+
+         {/* update Icon */}
+
+         <Box>
+          <Link to={`${location.pathname}/update`} >
+          <EditIcon/>
+          </Link>
+         </Box>
+
         <Text fontSize="lg">{singleBlog?.author?.name}</Text>
         <Text>{singleBlog?.author?.publish_date}</Text>
       </Box>
       <Center textAlign="center">
         <Stack>
           <Heading>
-            Your most unhappy customers are your greatest source of learning
+            {singleBlog?.tittle}
           </Heading>
           <Text fontSize="lg">
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia, there live the blind texts.
+            {singleBlog.sub_title}
           </Text>
           <Box>
             <Image
               rounded={"lg"}
               src={
-               `${singleBlog?.thumbnail_pic}`
+               `${singleBlog?.thumbnail}`
               }
               alt="Thumbnail Image"
             />
           </Box>
           <Box textAlign="left">
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia, there live the blind texts. Separated they
-            live in Bookmarksgrove right at the coast of the Semantics, a large
-            language ocean.
-            <br />A small river named Duden flows by their place and supplies it
-            with the necessary regelialia. It is a paradisematic country, in
-            which roasted parts of sentences fly into your mouth.
-            <br />
-            Even the all-powerful Pointing has no control about the blind texts
-            it is an almost unorthographic life One day however a small line of
-            blind text by the name of Lorem Ipsum decided to leave for the far
-            World of Grammar.
+           {singleBlog?.description}
           </Box>
         </Stack>
       </Center>

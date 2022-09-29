@@ -13,7 +13,8 @@ const Articles = () => {
     if(blog?.length===0){
       dispatch(fetchBlogPost());
     }
-  },[blog?.length,dispatch])
+  },[blog?.length,dispatch]);
+  
   return (
     <Container maxW={"3xl"}>
       <Box textAlign="center" py={{ base: 2, md: 10 }}>

@@ -3,15 +3,22 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const BlogCard = ({blog}) => {
+
+    // console.log(blog,"blog");
+    
+
   return (
     <Center my={6} >
        <Link to={`/articles/${blog.id}`} >
         <Box  maxW={'445px'} w='full' bg={useColorModeValue("white",'gray.900')}  boxShadow={'2xl'} rounded={'md'} p={6} overflow={'hidden'} >
-        <Box> <Image src={`${blog.thumbnail_pic}`} /></Box>
+     
+         
         <Stack>
-            <Text>Blog</Text>
-            <Heading>{blog.title}</Heading>
+            <Image src={blog.thumbnail} />
+            <Text>{blog.tittle}</Text>
+            <Heading>{blog.sub_title}</Heading>
             <Text>{blog.description}</Text>
+            <Image w={'40px'} h={'40px'} borderRadius={"50%"} src={`${blog?.author?.profile_pic}`} /> <span>{blog?.author?.name}</span>
             </Stack> 
         </Box>
      </Link>

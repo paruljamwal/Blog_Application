@@ -82,4 +82,38 @@ export const fetchSingleBlogPost=(payload)=>(dispatch)=>{
 
 
 
-// 
+// CREATE POST
+
+
+const createBlogPostRequest=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_REQUEST,
+        payload
+    }
+}
+
+
+const createBlogPostSuccess=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_SUCCESS,
+        payload
+    }
+}
+
+
+
+const createPostFailure=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_FAILURE,
+        payload
+    }
+}
+
+
+export const createBlogPost=(payload)=>(dispatch)=>{
+    dispatch(createBlogPostRequest());
+    axios.post(`/blogs`,payload)
+    .then((r)=>dispatch(createBlogPostSuccess(r.data)))
+    .catch((e)=>dispatch(createPostFailure(e.data)))
+}
+

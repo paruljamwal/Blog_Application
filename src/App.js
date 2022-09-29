@@ -5,6 +5,7 @@ import Homepage from "./Pages/Homepage";
 import Articles from "./Pages/Articles";
 import CreateArticle from "./Pages/CreateArticle";
 import Article from "./Pages/Article";
+import UpdateArticles from "./Pages/UpdateArticles";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/articles/:id" element={<Article />} />
+        <Route path="articles/:id/update" element={<UpdateArticles/>} />
         <Route path="/create" element={<CreateArticle />} />
       </Routes>
     </Box>
