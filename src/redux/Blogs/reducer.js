@@ -61,7 +61,7 @@ export const BlogReducer=(store=initialStore,{type,payload})=>{
         
         
     default:
-     return   store
+     return  store
   
   }
 }

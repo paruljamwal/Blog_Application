@@ -155,3 +155,39 @@ export const updateBlogPost=(payload)=>(dispatch)=>{
     .catch((e)=>dispatch(updatePostFailure(e.data)))
 }
 
+
+
+//DELETE POST
+
+const deleteBlogPostRequest=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_REQUEST,
+        payload
+    }
+}
+
+
+const deleteBlogPostSuccess=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_SUCCESS,
+        payload
+    }
+}
+
+
+
+const deletePostFailure=(payload)=>{
+    return{
+        type:types.CREATE_BLOG_POST_FAILURE,
+        payload
+    }
+}
+
+
+export const deleteBlogPost=(payload)=>(dispatch)=>{
+    dispatch(deleteBlogPostRequest());
+    axios.delete(`/blogs/${payload}`)
+    .then((r)=>dispatch(deleteBlogPostSuccess(r.data)))
+     .then(()=>fetchBlogPost())
+    .catch((e)=>dispatch(deletePostFailure(e.data)))
+}
