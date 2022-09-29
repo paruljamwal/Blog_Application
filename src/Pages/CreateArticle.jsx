@@ -31,7 +31,24 @@ const CreateArticle = () => {
     const { name, value } = event.target;
     setFormData({ [name]: value });
   };
-  console.log(formData);
+  // console.log(formData);
+
+
+  const createApplication=()=>{
+    const newData={
+      "id":12,
+      "tittle":formData.title,
+      "thumbnail":formData.thumbnail_pic,
+      "description":formData.description,
+       "author":{
+       "name":formData.author_name,
+       "profile_pic":formData.author_profile_pic,
+       "publish_date": new Date().toLocaleDateString()     
+      
+      }
+    }
+  }
+
   return (
     <Container>
       <Box textAlign="center" py={{ base: 2, md: 10 }}>
@@ -93,6 +110,7 @@ const CreateArticle = () => {
             />
           </FormControl>
         </Stack>
+        <Button onCLick={createApplication} >Create Application</Button>
       </Box>
     </Container>
   );

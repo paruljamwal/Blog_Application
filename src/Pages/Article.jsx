@@ -9,18 +9,33 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchSingleBlogPost } from "../redux/Blogs/action";
 
 const Article = () => {
+  const {id}=useParams();
+  const dispatch=useDispatch()
+  const singleBlog=useSelector(store=>store.BlogReducer.singleBlog);
+  
+  useEffect(()=>{
+    if(Object.keys(singleBlog).length===0 && id){
+      dispatch(fetchSingleBlogPost(Number(id)))
+    }
+  },[id,singleBlog,dispatch])
+
+
   return (
     <Container maxW={"3xl"} pb={"4rem"}>
       <Box textAlign="center" py={{ base: 5, md: 10 }}>
         <Avatar
-          name="Dan Abrahmov"
+          name={singleBlog?.author?.name}
           size="lg"
-          src="https://bit.ly/dan-abramov"
+          src={`${singleBlog?.author?.profile_pic}`}
         />
-        <Text fontSize="lg">Masai School</Text>
-        <Text>11/06/2022</Text>
+        <Text fontSize="lg">{singleBlog?.author?.name}</Text>
+        <Text>{singleBlog?.author?.publish_date}</Text>
       </Box>
       <Center textAlign="center">
         <Stack>
@@ -35,7 +50,7 @@ const Article = () => {
             <Image
               rounded={"lg"}
               src={
-                "https://preview.colorlib.com/theme/magdesign/images/ximg_2.jpg.pagespeed.ic.fbbBEgB1Q6.webp"
+               `${singleBlog?.thumbnail_pic}`
               }
               alt="Thumbnail Image"
             />
